@@ -1,0 +1,40 @@
+﻿@page
+@model SignalRAssignment.Pages.Login.LoginModel
+@{
+}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title text-center">Please login in here</h2>
+                    <h4>Enter your detail below</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Username</label>
+                            <input type="text" asp-for="UserLogin.Username" class="form-control" id="username" required>
+                            @*<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>*@
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" asp-for="UserLogin.Password" class="form-control" id="password" required>
+                        </div>
+                        @*<div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>*@
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </form>
+                    @{
+                        if (Model.MessageError != null)
+                        {
+                            <span class="text-danger">@Model.MessageError</span>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

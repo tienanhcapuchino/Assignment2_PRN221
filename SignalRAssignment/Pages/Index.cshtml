@@ -1,0 +1,33 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div>
+    <form method="get">
+        <input class="form-control" name="searhName" value="@ViewData["SearchName"]" type="text" placeholder="enter name to search" />
+        <input style="margin-top:10px" class="btn btn-primary" type="submit" value="Search" />
+    </form>
+</div>
+<div class="container">
+    @{
+        foreach (var item in Model.AllProducts)
+        {
+            <div class="card" style="width: 18rem;margin-top:10px">
+                <img src="@item.ProductImage" class="card-img-top" alt="@item.ProductName">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5 class="flex-grow-1">@item.ProductName</h5>
+                        <h5 class="flex-grow-12">@item.UnitPrice$</h5>
+                    </div>
+                    <b class="card-text">Category: @item.Category.CategoryName</b>
+                    <a href="#" class="btn btn-primary">Add to cart</a>
+                </div>
+            </div>
+        }
+    }
+</div>
+@section Head{
+    <link rel="stylesheet" href="~/css/Products.css" />
+}
