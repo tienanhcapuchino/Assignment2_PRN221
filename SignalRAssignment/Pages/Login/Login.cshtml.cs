@@ -28,21 +28,17 @@ namespace SignalRAssignment.Pages.Login
             try
             {
                 model = UserLogin;
+                var users = await _accountService.GetAccountByUsername(model.Username);
                 if (await _accountService.Login(model))
                 {
-                    var users = await _accountService.GetAccountByUsername(model.Username);
-
-                    if (users != null)
-                    {
-                        string jsonStr = JsonConvert.SerializeObject(users);
-                        HttpContext.Session.SetString("user", jsonStr);
-                        return RedirectToPage("/Index");
-                    }
+                    string jsonStr = JsonConvert.SerializeObject(users);
+                    HttpContext.Session.SetString("user", jsonStr);
+                    return RedirectToPage("/Index");
                 }
                 var admin = await _accountService.IsAdmin(model);
                 if (admin)
                 {
-                    string jsonStr = JsonConvert.SerializeObject(admin);
+                    string jsonStr = JsonConvert.SerializeObject(users);
                     HttpContext.Session.SetString("admin", jsonStr);
                     return RedirectToPage("/Product/ListAllProduct");
                 }

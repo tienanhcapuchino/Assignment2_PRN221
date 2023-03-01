@@ -14,5 +14,6 @@ namespace Shopping.Core.Interface
         Task<bool> IsAdmin(UserLoginModel userLogged);
         Task<bool> IsAccountExist(string username);
         Task<Account> GetAccountByUsername(string username);
+        Task<bool> RegisterAccount(Account account);
     }
 }

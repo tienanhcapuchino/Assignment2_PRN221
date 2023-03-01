@@ -2,4 +2,17 @@
 @model ShoppingWeb.Pages.Login.RegisterModel
 @{
 }
-<h1>This is register page</h1>
+
+<h1>Register new account</h1>
+<form method="post">
+    <input style="margin-bottom: 15px" class="form-control" type="text" asp-for="Acc.Username" name="Username" placeholder="Username" required>
+    <input style="margin-bottom: 15px"  class="form-control" asp-for="Acc.Password" type="password" name="password" placeholder="Password" required>
+    <input class="btn btn-primary" type="submit" value="Sign up">
+</form>
+<p>Already have an Account? <a asp-page="./Login"> Login Now!</a></p>
+@{
+    if (Model.MessageError != null)
+    {
+        <span class="text-danger">@Model.MessageError</span>
+    }
+}

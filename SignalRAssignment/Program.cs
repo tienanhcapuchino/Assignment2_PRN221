@@ -19,6 +19,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IProductService, ProductsService>();
 builder.Services.AddTransient<ICategoriesService, CategoriesService>();
+builder.Services.AddTransient<ICustomerService, CustomerService>();
+builder.Services.AddTransient<IOrderService, OrderService>();
 #endregion
 var app = builder.Build();
 

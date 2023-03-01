@@ -48,5 +48,15 @@ namespace Shopping.Core.ServiceManager
             if (user != null) return true;
             return false;
         }
+
+        public async Task<bool> RegisterAccount(Account account)
+        {
+            var acc = await _context.Accounts.SingleOrDefaultAsync(x => x.Username == account.Username);
+            if (acc != null) return false;
+            account.Type = 2;
+            _context.Accounts.Add(account);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }
