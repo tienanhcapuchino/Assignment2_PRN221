@@ -23,6 +23,10 @@ namespace SignalRAssignment.Pages.Login
         {
             this.MessageError = message;
         }
+        public void OnPostLog()
+        {
+            HttpContext.Session.Clear();
+        }
         public async Task<IActionResult> OnPostAsync(UserLoginModel model)
         {
             try

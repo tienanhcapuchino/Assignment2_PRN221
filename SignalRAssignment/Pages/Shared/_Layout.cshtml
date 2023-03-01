@@ -1,4 +1,24 @@
 ﻿@*@model IndexModel*@
+@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@using Shopping.Core.Entity
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var session = HttpContextAccessor.HttpContext.Session;
+    var user = session.GetString("user");
+    var admin = session.GetString("admin");
+    Account? acc = new Account();
+    //if (user != null)
+    //{
+    //    var AccountUser = JsonConvert.DeserializeObject<Account>(user);
+    //}
+    if (admin != null)
+    {
+        acc = JsonConvert.DeserializeObject<Account>(admin);
+    }
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,14 +68,29 @@
                             <a class="nav-link text-dark">Reviews</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav flex-grow-12">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Login/Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Login/Register">Register</a>
-                        </li>
-                    </ul>
+                    @{
+                        if (admin != null)
+                        {
+                            <ul class="navbar-nav flex-grow-12">
+                                <li class="nav-item">
+                                    Welcome Admin: @acc.Username
+                                </li>
+                                <li class="nav-item"><a class="btn btn-primary">Log out</a></li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="navbar-nav flex-grow-12">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-page="/Login/Login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-page="/Login/Register">Register</a>
+                                </li>
+                            </ul>
+                        }
+                    }
+
                 </div>
             </div>
         </nav>
