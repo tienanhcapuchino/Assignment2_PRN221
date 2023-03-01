@@ -8,15 +8,10 @@
 @{
     var session = HttpContextAccessor.HttpContext.Session;
     var user = session.GetString("user");
-    var admin = session.GetString("admin");
     Account? acc = new Account();
-    //if (user != null)
-    //{
-    //    var AccountUser = JsonConvert.DeserializeObject<Account>(user);
-    //}
-    if (admin != null)
+    if (user != null)
     {
-        acc = JsonConvert.DeserializeObject<Account>(admin);
+        acc = JsonConvert.DeserializeObject<Account>(user);
     }
 }
 <!DOCTYPE html>
@@ -69,11 +64,20 @@
                         </li>
                     </ul>
                     @{
-                        if (admin != null)
+                        if (user != null && acc.Type == 1)
                         {
                             <ul class="navbar-nav flex-grow-12">
                                 <li class="nav-item">
                                     Welcome Admin: @acc.Username
+                                </li>
+                                <li class="nav-item"><a class="btn btn-primary">Log out</a></li>
+                            </ul>
+                        }
+                        else if (user != null && acc.Type == 2)
+                        {
+                            <ul class="navbar-nav flex-grow-12">
+                                <li class="nav-item">
+                                    Welcome Staff: @acc.Username
                                 </li>
                                 <li class="nav-item"><a class="btn btn-primary">Log out</a></li>
                             </ul>

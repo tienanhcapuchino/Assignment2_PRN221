@@ -43,10 +43,22 @@ namespace Shopping.Core.ServiceManager
             return _context.Customers.ToList();
         }
 
+        public Customers GetCustomerByPhone(string phone)
+        {
+            return _context.Customers.SingleOrDefault(x => x.Phone == phone);
+        }
+
+        public async Task<bool> Login(string phone, string password)
+        {
+            var cus = _context.Customers.SingleOrDefaultAsync(x => x.Password == password && x.Phone == phone);
+            if (cus != null) return true;
+            return false;
+        }
+
         public async Task<bool> UpdateProfile(Customers cus)
         {
             var customer = await _context.Customers.SingleOrDefaultAsync(x => x.CustomerId == cus.CustomerId);
-            if(customer != null)
+            if (customer != null)
             {
                 customer.Address = cus.Address;
                 customer.Phone = cus.Phone;

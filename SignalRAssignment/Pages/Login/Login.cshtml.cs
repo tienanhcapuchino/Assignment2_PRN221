@@ -10,10 +10,12 @@ namespace SignalRAssignment.Pages.Login
     {
         private readonly ILogger<LoginModel> _logger;
         private readonly IAccountService _accountService;
-        public LoginModel(IAccountService accountService, ILogger<LoginModel> logger)
+        private readonly ICustomerService _customerService;
+        public LoginModel(IAccountService accountService, ILogger<LoginModel> logger, ICustomerService customerService)
         {
             _accountService = accountService;
             _logger = logger;
+            _customerService = customerService;
         }
         [BindProperty]
         public UserLoginModel UserLogin { get; set; }
@@ -37,15 +39,18 @@ namespace SignalRAssignment.Pages.Login
                 {
                     string jsonStr = JsonConvert.SerializeObject(users);
                     HttpContext.Session.SetString("user", jsonStr);
-                    return RedirectToPage("/Index");
+                    if (users.Type == 2)
+                        return RedirectToPage("/Index");
+                    if (users.Type == 1)
+                        return RedirectToPage("/Product/ListAllProduct");
                 }
-                var admin = await _accountService.IsAdmin(model);
-                if (admin)
+                if (await _customerService.Login(model.Username, model.Password))
                 {
-                    string jsonStr = JsonConvert.SerializeObject(users);
-                    HttpContext.Session.SetString("admin", jsonStr);
-                    return RedirectToPage("/Product/ListAllProduct");
-                }
+                    var customer = _customerService.GetCustomerByPhone(model.Username);
+                    string jsonStr = JsonConvert.SerializeObject(customer);
+                    HttpContext.Session.SetString("customer", jsonStr);
+                    return RedirectToPage("/Index");
+                } 
                 return RedirectToPage("Login", new { message = "Login failed" });
             }
             catch (Exception ex)

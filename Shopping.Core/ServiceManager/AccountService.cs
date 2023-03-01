@@ -43,8 +43,7 @@ namespace Shopping.Core.ServiceManager
         public async Task<bool> Login(UserLoginModel userLogged)
         {
             var user = await _context.Accounts.Where(x => x.Username == userLogged.Username 
-            && x.Password == userLogged.Password
-            && x.Type == 2).FirstOrDefaultAsync();
+            && x.Password == userLogged.Password).FirstOrDefaultAsync();
             if (user != null) return true;
             return false;
         }

@@ -13,5 +13,7 @@ namespace Shopping.Core.Interface
         Task<bool> ChangePassword(int cusId, string password);
         List<Customers> GetAllCustomers();
         Task<bool> AddNewCus(Customers cus);
+        Task<bool> Login(string phone, string password);
+        Customers GetCustomerByPhone(string phone);
     }
 }
