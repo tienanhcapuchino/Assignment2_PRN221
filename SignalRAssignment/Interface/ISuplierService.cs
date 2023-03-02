@@ -10,5 +10,9 @@ namespace SignalRAssignment.Interface
     public interface ISuplierService
     {
         List<Suppliers> GetAll();
+        Task<bool> AddNew(Suppliers supplier);
+        Task<bool> Update(Suppliers suppliers);
+        bool Delete(int supId);
+        Suppliers GetSuppliers(int supId);
     }
 }
