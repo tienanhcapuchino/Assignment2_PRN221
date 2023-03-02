@@ -1,0 +1,20 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace SignalRAssignment.Pages.Login
+{
+    public class LogoutModel : PageModel
+    {
+        private readonly IHttpContextAccessor _contextAccessor;
+        public LogoutModel(IHttpContextAccessor contextAccessor)
+        {
+            _contextAccessor = contextAccessor;
+        }
+
+        public IActionResult OnGet()
+        {
+            _contextAccessor.HttpContext.Session.Clear();
+            return RedirectToPage("/Index");
+        }
+    }
+}

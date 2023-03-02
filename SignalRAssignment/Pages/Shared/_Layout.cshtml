@@ -7,10 +7,16 @@
 
 @{
     var user = HttpContextAccessor.HttpContext.Session.GetString("user");
+    var custome = HttpContextAccessor.HttpContext.Session.GetString("customer");
     Account? acc = new Account();
+    Customers? cus = new Customers();
     if (user != null)
     {
         acc = JsonConvert.DeserializeObject<Account>(user);
+    }
+    if (custome != null)
+    {
+        cus = JsonConvert.DeserializeObject<Customers>(custome);
     }
 }
 <!DOCTYPE html>
@@ -50,6 +56,12 @@
                             if (user != null && acc.Type == 2)
                             {
                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Customer/ListAllCus">Customers</a>
+                                </li>
+                            }
+                            if (custome != null)
+                            {
+                                <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Customer/Profile">Profile</a>
                                 </li>
                             }
@@ -80,7 +92,7 @@
                                 <li class="nav-item">
                                     Welcome Admin: @acc.Username
                                 </li>
-                                <li class="nav-item"><a class="btn btn-primary">Log out</a></li>
+                                <li class="nav-item"><a asp-page="/Login/Logout" class="btn btn-primary">Log out</a></li>
                             </ul>
                         }
                         else if (user != null && acc.Type == 2)
@@ -89,7 +101,16 @@
                                 <li class="nav-item">
                                     Welcome Staff: @acc.Username
                                 </li>
-                                <li class="nav-item"><a class="btn btn-primary">Log out</a></li>
+                                <li class="nav-item"><a asp-page="/Login/Logout" class="btn btn-primary">Log out</a></li>
+                            </ul>
+                        }
+                        else if (custome != null)
+                        {
+                            <ul class="navbar-nav flex-grow-12">
+                                <li class="nav-item">
+                                    Welcome Customer: @cus.ContactName
+                                </li>
+                                <li class="nav-item"><a asp-page="/Login/Logout" class="btn btn-primary">Log out</a></li>
                             </ul>
                         }
                         else
