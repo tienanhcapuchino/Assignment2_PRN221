@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SignalRAssignment.Pages.Customer
 {
-    public class ChangePasswordModel : PageModel
+    public class AddModel : PageModel
     {
         public void OnGet()
         {

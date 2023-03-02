@@ -50,7 +50,7 @@ namespace SignalRAssignment.ServiceManager
 
         public async Task<bool> Login(string phone, string password)
         {
-            var cus = _context.Customers.SingleOrDefaultAsync(x => x.Password == password && x.Phone == phone);
+            var cus = await _context.Customers.SingleOrDefaultAsync(x => x.Password == password && x.Phone == phone);
             if (cus != null) return true;
             return false;
         }
