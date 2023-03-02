@@ -19,9 +19,21 @@ namespace SignalRAssignment.ServiceManager
             _context = context;
         }
 
+        public async Task<bool> AddAcc(Account account)
+        {
+            _context.Accounts.Add(account);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<Account> GetAccountByUsername(string username)
         {
             return await _context.Accounts.SingleOrDefaultAsync(x => x.Username == username);
+        }
+
+        public List<Account> GetAccounts()
+        {
+            return _context.Accounts.ToList();
         }
 
         public async Task<bool> IsAccountExist(string username)
@@ -56,6 +68,36 @@ namespace SignalRAssignment.ServiceManager
             _context.Accounts.Add(account);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public bool RemoveAcc(int accId)
+        {
+            var acc =  _context.Accounts.SingleOrDefault(x => x.AccountId == accId);
+            if (acc != null)
+            {
+                _context.Accounts.Remove(acc);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        public Account GetById(int accId)
+        {
+            return _context.Accounts.SingleOrDefault(x => x.AccountId == accId);
+        }
+        public async Task<bool> UpdateAcc(Account account)
+        {
+            var acc = await _context.Accounts.SingleOrDefaultAsync(x => x.AccountId == account.AccountId);
+            if (acc != null)
+            {
+                acc.Type = account.Type; 
+                acc.Username = account.Username; 
+                acc.Password = account.Password;
+                _context.Accounts.Update(acc);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

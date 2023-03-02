@@ -1,0 +1,47 @@
+﻿@page
+@model SignalRAssignment.Pages.Accounts.ListAllAccountsModel
+@{
+}
+<h1>Account Management</h1>
+<a class="btn btn-primary" asp-page="./CreateAcc">Create new</a>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+            <td>Username</td>
+            <th>Password</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model.AllAcc)
+            {
+                <tr>
+                    <td>@item.Username</td>
+                    <td>@item.Password</td>
+                    <td>
+                        @{
+                            if (item.Type == 1)
+                            {
+                                <p class="text-success">Admin</p>
+                            }
+                            else
+                            {
+                                <p class="text-primary">Staff</p>
+                            }
+                        }
+                    </td>
+                    <td>
+
+                        <a class="btn btn-primary" asp-page="./UpdateAcc" asp-route-id="@item.AccountId">Edit</a>
+                        <form method="post">
+                            <input type="hidden" name="accId" value="@item.AccountId" />
+                            <input class="btn btn-outline-primary" type="submit" value="Delete" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

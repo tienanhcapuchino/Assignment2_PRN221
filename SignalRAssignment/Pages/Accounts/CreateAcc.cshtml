@@ -1,0 +1,28 @@
+﻿@page
+@model SignalRAssignment.Pages.Accounts.CreateAccModel
+@{
+}
+<h1>Add new an Account</h1>
+<div>
+    <form method="post">
+        <input type="text" hidden asp-for="Accou.AccountId" />
+        <div class="form-group">
+            <label class="control-label">Username</label>
+            <input asp-for="Accou.Username" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Password</label>
+            <input asp-for="Accou.Password" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Username</label>
+            <select asp-for="Accou.Type" class="form-control">
+                @{
+                    <option value="1">Admin</option>
+                    <option value="2">Staff</option>
+                }
+            </select>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Add new" />
+    </form>
+</div>

@@ -1,0 +1,37 @@
+﻿@page
+@model SignalRAssignment.Pages.Accounts.UpdateAccModel
+@{
+}
+<h1>Update Account</h1>
+<div>
+    <form method="post">
+        <input type="text" hidden asp-for="Acc.AccountId" />
+        <div class="form-group">
+            <label class="control-label">Username</label>
+            <input asp-for="Acc.Username" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Password</label>
+            <input asp-for="Acc.Password" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Username</label>
+            <select asp-for="Acc.Type" class="form-control">
+                @{
+                    var checkSelect = Model.Acc.Type == 1;
+                    if (checkSelect)
+                    {
+                        <option value="1" selected>Admin</option>
+                        <option value="2">Staff</option>
+                    }
+                    else
+                    {
+                        <option value="1">Admin</option>
+                        <option selected value="2">Staff</option>
+                    }
+                }
+            </select>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Save" />
+    </form>
+</div>

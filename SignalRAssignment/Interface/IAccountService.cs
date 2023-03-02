@@ -15,5 +15,10 @@ namespace SignalRAssignment.Interface
         Task<bool> IsAccountExist(string username);
         Task<Account> GetAccountByUsername(string username);
         Task<bool> RegisterAccount(Account account);
+        List<Account> GetAccounts();
+        Task<bool> AddAcc(Account account);
+        bool RemoveAcc(int accId);
+        Task<bool> UpdateAcc(Account account);
+        Account GetById(int accId);
     }
 }
