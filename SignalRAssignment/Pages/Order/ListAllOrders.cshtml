@@ -1,0 +1,39 @@
+﻿@page
+@model SignalRAssignment.Pages.Order.ListAllOrdersModel
+@{
+}
+<h1>Orders Management</h1>
+<a class="btn btn-primary" asp-page="./AddOrder">Create new</a>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+            <td>CustomerName</td>
+            <th>Shipped Date</th>
+            <th>Required Date</th>
+            <th>Freight</th>
+            <th>Ship Address</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model.Orders)
+            {
+                <tr>
+                    <td>@item.Customer.ContactName</td>
+                    <td>@item.ShippedDate</td>
+                    <td>@item.RequiredDate</td>
+                    <td>@item.Freight</td>
+                    <td>@item.ShipAddress</td>
+                    <td>
+                        <a class="btn btn-primary" asp-page="./UpdateOrder" asp-route-id="@item.OrderId">Edit</a>
+                        <form method="post" asp-page-handler="delete">
+                            <input type="hidden" name="orId" value="@item.OrderId" />
+                            <input class="btn btn-outline-primary" type="submit" value="Delete" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

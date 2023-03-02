@@ -10,5 +10,10 @@ namespace SignalRAssignment.Interface
     public interface IOrderService
     {
         List<Orders> GetByCusId(int cusId);
+        List<Orders> GetAll();
+        Task<bool> UpdateOrder(Orders order);
+        bool DeleteOrder(int cusId);
+        Task<bool> AddOrder(Orders order);
+        Orders GetOrderById(int orId);
     }
 }

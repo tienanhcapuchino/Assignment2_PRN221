@@ -1,0 +1,46 @@
+﻿@page
+@model SignalRAssignment.Pages.Order.UpdateOrderModel
+@{
+}
+<h1>Update order</h1>
+<div>
+    <form method="post">
+        <input type="text" hidden asp-for="Ord.OrderId" />
+        <div class="form-group">
+            <label class="controll-label">Customer Name</label>
+            <select asp-for="Ord.CustomerId" class="form-control">
+                @{
+                    foreach (var item in Model.Customers)
+                    {
+                        var checkSelect = Model.Ord.CustomerId == item.CustomerId;
+                        if (checkSelect)
+                        {
+                            <option selected value="@item.CustomerId">@item.ContactName</option>
+                        }
+                        else
+                        {
+                            <option value="@item.CustomerId">@item.ContactName</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="controll-label">Shipped Date</label>
+            <input type="date" class="form-control" asp-for="Ord.ShippedDate" />
+        </div>
+        <div class="form-group">
+            <label class="controll-label">Required Date</label>
+            <input type="date" class="form-control" asp-for="Ord.RequiredDate" />
+        </div>
+        <div class="form-group">
+            <label class="controll-label">Freight</label>
+            <input asp-for="Ord.Freight" class="form-control" type="text" placeholder="enter the freight" />
+        </div>
+        <div class="form-group">
+            <label class="controll-label">Ship Address</label>
+            <input asp-for="Ord.ShipAddress" class="form-control" type="text" placeholder="enter ship address" />
+        </div>
+        <input class="btn btn-primary" type="submit" value="Save" />
+    </form>
+</div>

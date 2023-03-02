@@ -2,7 +2,7 @@
 @model SignalRAssignment.Pages.Product.ListAllProductModel
 @{
 }
-<h1>Product Managerment</h1>
+<h1>Product Management</h1>
 <a class="btn btn-primary" asp-page="./AddProduct">Create new</a>
 <table class="table table-hover">
     <thead>
@@ -32,7 +32,7 @@
                     <td>
 
                         <a class="btn btn-primary" asp-page="./UpdateProduct" asp-route-id="@item.ProductId">Edit</a>
-                        <form method="post" asp-page-handler="delete">
+                        <form method="post">
                             <input type="hidden" name="prId" value="@item.ProductId" />
                             <input class="btn btn-outline-primary" type="submit" value="Delete" />
                         </form>
