@@ -5,27 +5,30 @@ using SignalRAssignment.Interface;
 
 namespace SignalRAssignment.Pages.Category
 {
-    public class ListAllCateModel : PageModel
+    public class CreateCateModel : PageModel
     {
         private readonly ICategoriesService _cateService;
-        private ILogger<ListAllCateModel> _logger;
-        public ListAllCateModel(ICategoriesService cateService, ILogger<ListAllCateModel> logger)
+        private readonly ILogger<CreateCateModel> _logger;
+        public CreateCateModel(ICategoriesService cateService, ILogger<CreateCateModel> logger)
         {
             _cateService = cateService;
             _logger = logger;
         }
         [BindProperty]
-        public List<Categories> ListAll { get; set; }
+        public Categories Cate { get; set; }
         public void OnGet()
         {
-            ListAll = _cateService.GetAllCategoriesName();
         }
-        public IActionResult OnPost(int cateId)
+        public async Task<IActionResult> OnPostAsync(Categories model)
         {
             try
             {
-                _cateService.DeleteCate(cateId);
-                return RedirectToPage("ListAllCate");
+                model = Cate;
+                if (await _cateService.AddNew(model))
+                {
+                    return RedirectToPage("ListAllCate");
+                }
+                return RedirectToPage("CreateCate");
             }
             catch (Exception ex)
             {
