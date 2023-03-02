@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Shopping.Core.Entity;
-using Shopping.Core.Interface;
+using SignalRAssignment.Entity;
+using SignalRAssignment.Interface;
 
 namespace SignalRAssignment.Pages
 {

@@ -1,0 +1,61 @@
+﻿@page
+@model SignalRAssignment.Pages.Product.UpdateProductModel
+@{
+}
+<h1>Update product</h1>
+<div>
+    <form method="post">
+        <div class="form-group">
+            <input type="text" hidden asp-for="Pro.ProductId" />
+            <label class="controll-label">Product Name</label>
+            <input asp-for="Pro.ProductName" class="form-control" type="text" placeholder="enter name of product" />
+        </div>
+        <div class="form-group">
+            <label class="controll-label">Category</label>
+            <select asp-for="Pro.CategoryId" class="form-control">
+                @{
+                    foreach (var item in Model.Categories)
+                    {
+                        var checkSelect = item.CategoryId == Model.Pro.CategoryId;
+                        if (checkSelect)
+                        {
+                            <option selected value="@item.CategoryId">@item.CategoryName</option>
+                        }
+                        else
+                        {
+                            <option value="@item.CategoryId">@item.CategoryName</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="controll-label">Suplier</label>
+            <select asp-for="Pro.SupplierId" class="form-control">
+                @{
+                    foreach (var item in Model.Suppliers)
+                    {
+                        var checkSelect = item.SupplierId == Model.Pro.SupplierId;
+                        if (checkSelect)
+                        {
+                            <option selected value="@item.SupplierId">@item.CompanyName</option>
+                        }
+                        else
+                        {
+                            <option value="@item.SupplierId">@item.CompanyName</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="controll-label">QuantityPerUnit</label>
+            <input asp-for="Pro.QuantityPerUnit" class="form-control" type="text" placeholder="enter name of quantityPerUnit" />
+        </div>
+        <div class="form-group">
+            <label class="controll-label">Unit Price</label>
+            <input asp-for="Pro.UnitPrice" class="form-control" type="text" placeholder="enter name of Unit price" />
+        </div>
+        <input class="btn btn-primary" type="submit" value="Save" />
+    </form>
+</div>

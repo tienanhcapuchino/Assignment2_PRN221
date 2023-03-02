@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
-using Shopping.Core.Interface;
-using Shopping.Core.Models;
+using SignalRAssignment.Interface;
+using SignalRAssignment.Models;
 
 namespace SignalRAssignment.Pages.Login
 {

@@ -1,0 +1,48 @@
+﻿@page
+@model SignalRAssignment.Pages.Product.AddProductModel
+@{
+}
+<h1>Create new product</h1>
+<div>
+    <form method="post">
+        <div class="form-group">
+            <label class="controll-label">Product Name</label>
+            <input asp-for="Pro.ProductName" class="form-control" type="text" placeholder="enter name of product" />
+        </div>
+        <div class="form-group">
+            <label class="controll-label">Category</label>
+            <select asp-for="Pro.CategoryId" class="form-control">
+                @{
+                    foreach (var item in Model.Categories)
+                    {
+                        <option value="@item.CategoryId">@item.CategoryName</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="controll-label">Suplier</label>
+            <select asp-for="Pro.SupplierId" class="form-control">
+                @{
+                    foreach (var item in Model.Suppliers)
+                    {
+                        <option value="@item.SupplierId">@item.CompanyName</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="controll-label">QuantityPerUnit</label>
+            <input asp-for="Pro.QuantityPerUnit" class="form-control" type="text" placeholder="enter name of quantityPerUnit" />
+        </div>
+        <div class="form-group">
+            <label class="controll-label">Unit Price</label>
+            <input asp-for="Pro.UnitPrice" class="form-control" type="text" placeholder="enter name of Unit price" />
+        </div>
+        <div class="form-group">
+            <label class="controll-label">Image</label>
+            <input asp-for="Pro.ProductImage" class="form-control" type="text" placeholder="enter url of image" />
+        </div>
+        <input class="btn btn-primary" type="submit" value="Add new" />
+    </form>
+</div>

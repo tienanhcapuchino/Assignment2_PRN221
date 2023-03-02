@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Shopping.Core.Entity;
-using Shopping.Core.Interface;
+using SignalRAssignment.Entity;
+using SignalRAssignment.Interface;
+using Microsoft.AspNetCore.Http;
 
 namespace SignalRAssignment.Pages.Product
 {
@@ -9,10 +10,12 @@ namespace SignalRAssignment.Pages.Product
     {
         private readonly IProductService _productService;
         private readonly ILogger<ListAllProductModel> _logger;
-        public ListAllProductModel(IProductService productService, ILogger<ListAllProductModel> logger)
+        private readonly IHttpContextAccessor _contextAccessor;
+        public ListAllProductModel(IProductService productService, ILogger<ListAllProductModel> logger, IHttpContextAccessor contextAccessor)
         {
             _productService = productService;
             _logger = logger;
+            _contextAccessor = contextAccessor;
         }
         public List<Products> AllProducts { get; set; }
         public Products ProductAdd { get; set; }
@@ -28,13 +31,18 @@ namespace SignalRAssignment.Pages.Product
                 throw;
             }
         }
-        public void OnPostEdit()
+        public IActionResult OnPostDelete(int prId)
         {
-
-        }
-        public void OnPostDelete()
-        {
-
+            try
+            {
+                _productService.DeleteProduct(prId);
+                return RedirectToPage("ListAllProduct");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                throw;
+            }
         }
     }
 }

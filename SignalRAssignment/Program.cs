@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Shopping.Core.DataContext;
-using Shopping.Core.Interface;
-using Shopping.Core.ServiceManager;
+using SignalRAssignment.DataContext;
+using SignalRAssignment.Interface;
+using SignalRAssignment.ServiceManager;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +21,7 @@ builder.Services.AddTransient<IProductService, ProductsService>();
 builder.Services.AddTransient<ICategoriesService, CategoriesService>();
 builder.Services.AddTransient<ICustomerService, CustomerService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddTransient<ISuplierService, SuplierService>();
 #endregion
 var app = builder.Build();
 

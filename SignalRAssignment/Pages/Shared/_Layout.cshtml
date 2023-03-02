@@ -1,13 +1,12 @@
 ﻿@*@model IndexModel*@
 @using Microsoft.AspNetCore.Http
 @using Newtonsoft.Json
-@using Shopping.Core.Entity
+@using SignalRAssignment.Entity
 
 @inject IHttpContextAccessor HttpContextAccessor
 
 @{
-    var session = HttpContextAccessor.HttpContext.Session;
-    var user = session.GetString("user");
+    var user = HttpContextAccessor.HttpContext.Session.GetString("user");
     Account? acc = new Account();
     if (user != null)
     {
