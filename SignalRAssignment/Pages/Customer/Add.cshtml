@@ -2,3 +2,25 @@
 @model SignalRAssignment.Pages.Customer.AddModel
 @{
 }
+<h1>Add new Customer</h1>
+<div>
+    <form method="post">
+        <div class="form-group">
+            <label class="control-label">Name</label>
+            <input asp-for="Customers.ContactName" placeholder="enter name" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Password</label>
+            <input asp-for="Customers.Password" type="password" placeholder="enter password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Address</label>
+            <input asp-for="Customers.Address" type="text" placeholder="enter address" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Phone</label>
+            <input asp-for="Customers.Phone" type="tel" placeholder="enter phone" class="form-control" />
+        </div>
+        <input class="btn btn-primary" type="submit" value="Add new" />
+    </form>
+</div>

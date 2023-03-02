@@ -15,5 +15,6 @@ namespace SignalRAssignment.Interface
         Task<bool> AddNewCus(Customers cus);
         Task<bool> Login(string phone, string password);
         Customers GetCustomerByPhone(string phone);
+        Customers GetCustomerById(int cusId);
     }
 }

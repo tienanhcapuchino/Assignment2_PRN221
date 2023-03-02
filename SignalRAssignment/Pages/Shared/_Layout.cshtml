@@ -44,26 +44,26 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link btn btn-primary" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         @{
                             if (user != null && acc.Type == 1)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Product/ListAllProduct">Product</a>
+                                    <a class="btn btn-primary" asp-area="" asp-page="/Product/ListAllProduct">Product</a>
                                 </li>
                             }
                             if (user != null && acc.Type == 2)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Customer/ListAllCus">Customers</a>
+                                    <a class="btn btn-primary" asp-area="" asp-page="/Customer/ListAllCus">Customers</a>
                                 </li>
                             }
                             if (custome != null)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Customer/Profile">Profile</a>
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Customer/OrderHistory">Orders History</a>
+                                    <a class="btn btn-primary" asp-area="" asp-page="/Customer/Profile">Profile</a>
+                                    <a class="btn btn-primary" asp-area="" asp-page="/Customer/OrderHistory">Orders History</a>
                                 </li>
                             }
                         }
@@ -81,9 +81,6 @@
                                     }*@
                                 </ul>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark">Reviews</a>
                         </li>
                     </ul>
                     @{

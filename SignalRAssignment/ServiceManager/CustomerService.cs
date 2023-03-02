@@ -43,6 +43,11 @@ namespace SignalRAssignment.ServiceManager
             return _context.Customers.ToList();
         }
 
+        public Customers GetCustomerById(int cusId)
+        {
+            return _context.Customers.SingleOrDefault(x => x.CustomerId == cusId);
+        }
+
         public Customers GetCustomerByPhone(string phone)
         {
             return _context.Customers.SingleOrDefault(x => x.Phone == phone);
