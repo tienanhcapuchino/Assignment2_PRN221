@@ -19,7 +19,19 @@ namespace SignalRAssignment.DataContext
         //{ 
 
         //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                var builder = new ConfigurationBuilder()
+                                .SetBasePath(Directory.GetCurrentDirectory())
+                                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                IConfigurationRoot configuration = builder.Build();
 
+                optionsBuilder.UseSqlServer(configuration.GetConnectionString("ShoppingStr"));
+            }
+        }
+        public ShoppingDbContext() { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AccountConfiguration());

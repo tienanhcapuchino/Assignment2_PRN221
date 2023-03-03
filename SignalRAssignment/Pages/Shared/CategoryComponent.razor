@@ -1,0 +1,20 @@
+﻿@using SignalRAssignment.DataContext
+@using SignalRAssignment.Entity
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Categories
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        @{
+            foreach (var item in list)
+            {
+                <li><a class="dropdown-item" href="/?cateId=@item.CategoryId">@item.CategoryName</a></li>
+            }
+        }
+    </ul>
+</div>
+@code {
+    static ShoppingDbContext _context = new ShoppingDbContext();
+    List<Categories> list => _context != null ? _context.Categories.ToList() : new List<Categories>();
+}
